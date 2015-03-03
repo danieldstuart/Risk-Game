@@ -12,7 +12,13 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
-		draw()
+
+	end
+	
+	def button_down(id)
+		if id == Gosu::KbEscape
+			close
+		end
 	end
 	
 	def draw()
@@ -43,7 +49,7 @@ class Country
 		raise "Position is not given as a number" unless position.is_a?(Numeric)
 		@position = position
 		@owner = owner
-		@army = army || 10
+		@army = army
 	end
 	
 	def change_owner(country)
@@ -59,9 +65,8 @@ end
 
 class Game
 	
-	def initialize(player, board)
+	def initialize(player)
 		@player = player
-		@board = board
 	end
 	 
 	def play_game()
@@ -95,7 +100,7 @@ Europe = Country.new(2, "player2", 10)
 South_America = Country.new(3, "player2", 10)
 Africa = Country.new(4, "player1", 10)
 
-Risk = Game.new("1", @board)
+Risk = Game.new("1")
 
 Risk.play_game()
 
