@@ -15,23 +15,21 @@ class GameWindow < Gosu::Window
 		draw()
 	end
 	
-	def color(owner)
-		if owner == "player1" then Gosu::Color.argb(0xff0000ff)
-		else Gosu::Color.argb(0xffff0000)
-		end
-	end
-	
 	def draw()
-		draw_line(320, 0, Gosu::Color.argb(0xffffffff), 320, 480, Gosu::Color.argb(0xffffffff), 1)
-		draw_line(0, 240, Gosu::Color.argb(0xffffffff), 640, 240, Gosu::Color.argb(0xffffffff), 1)
-		@font.draw("North America", 0, 0, 1, 1, 1, 0xffffffff)
-		@font.draw("Europe", 320, 0, 1, 1, 1, 0xffffffff)
-		@font.draw("South America", 0, 240, 1, 1, 1, 0xffffffff)
-		@font.draw("Africa", 320, 240, 1, 1, 1, 0xffffffff)
-		@font.draw("#{North_America.army}", 0, 20, 1, 1, 1, 0xffffffff)
-		@font.draw("#{Europe.army}", 320, 20, 1, 1, 1, 0xffffffff)
-		@font.draw("#{South_America.army}", 0, 260, 1, 1, 1, 0xffffffff)
-		@font.draw("#{Africa.army}", 320, 260, 1, 1, 1, 0xffffffff)
+		draw_line(320, 0, Gosu::Color.argb(0xffffffff), 320, 480, Gosu::Color.argb(0xffffffff), 3)
+		draw_line(0, 240, Gosu::Color.argb(0xffffffff), 640, 240, Gosu::Color.argb(0xffffffff), 3)
+		@font.draw("North America", 0, 0, 3, 1, 1, 0xffffffff)
+		@font.draw("Europe", 320, 0, 3, 1, 1, 0xffffffff)
+		@font.draw("South America", 0, 240, 3, 1, 1, 0xffffffff)
+		@font.draw("Africa", 320, 240, 3, 1, 1, 0xffffffff)
+		@font.draw("#{North_America.army}", 0, 20, 3, 1, 1, 0xffffffff)
+		@font.draw("#{Europe.army}", 320, 20, 3, 1, 1, 0xffffffff)
+		@font.draw("#{South_America.army}", 0, 260, 3, 1, 1, 0xffffffff)
+		@font.draw("#{Africa.army}", 320, 260, 3, 1, 1, 0xffffffff)
+		@font.draw("#{North_America.owner}", 0, 40, 2, 1, 1, 0xffffffff)
+		@font.draw("#{Europe.owner}", 320, 40, 2, 1, 1, 0xffffffff)
+		@font.draw("#{South_America.owner}", 0, 280, 2, 1, 1, 0xffffffff)
+		@font.draw("#{Africa.owner}", 320, 280, 2, 1, 1, 0xffffffff)
 		
 	end
 end
@@ -67,14 +65,18 @@ class Game
 	end
 	 
 	def play_game()
-		#move()
-		#check_move()
+		move(North_America, Europe)
+		switch_player()
+	end
+	
+	def move(from, to)
+		to.owner == from.owner
 	end
 	
 	def switch_player()
-		if @player == "player1"
-			@player = "player2"
-		else @player = "player1"
+		if @player == "1"
+			@player = "2"
+		else @player = "1"
 		end
 	end
 	
@@ -93,7 +95,7 @@ Europe = Country.new(2, "player2", 10)
 South_America = Country.new(3, "player2", 10)
 Africa = Country.new(4, "player1", 10)
 
-Risk = Game.new("player1", @board)
+Risk = Game.new("1", @board)
 
 Risk.play_game()
 
