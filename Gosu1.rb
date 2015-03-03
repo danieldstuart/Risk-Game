@@ -3,12 +3,15 @@ require 'gosu'
 class GameWindow < Gosu::Window
 	def initialize
 		super(640, 480, false)
-		self.caption = "Game Window"
+		self.caption = "Risk"
 		@font = Gosu::Font.new(self, Gosu::default_font_name, 20)
 	end
 
 	def needs_cursor?
 		true
+	end
+	
+	def move()
 	end
 	
 	def update
@@ -70,12 +73,10 @@ class Game
 	end
 	 
 	def play_game()
-		move(North_America, Europe)
-		switch_player()
-	end
-	
-	def move(from, to)
-		to.owner == from.owner
+		#move()
+		#check_win()
+		#switch_player()
+		#play_game()
 	end
 	
 	def switch_player()
